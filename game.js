@@ -34,12 +34,14 @@ var mainState = {
     if (this.bird.inWorld == false) this.restartGame()
     game.physics.arcade.overlap(this.bird, this.pipes, this.hitPipe, null, this)
     // Rotate the bird
+    if (this.bird.angle < 20) this.bird.angle += 1
   },
   jump: function () {
     // If the bird is dead, he can't jump
     if (this.bird.alive == false) return
     this.bird.body.velocity.y = -350
     // Jump animation
+    game.add.tween(this.bird).to({ angle: -20 }, 100).start()
   },
   hitPipe: function () {
     // If the bird has already hit a pipe, we have nothing to do
